@@ -37,6 +37,27 @@ public class SpeedTest {
     }
 
     @Test
+    public void testBlizzardModeOn() throws Exception {
+    		arctic.setBlizzardMode();
+    		assertEquals(true, arctic.getBlizzardMode());
+    }
+    
+    @Test
+    public void testBlizzardModeOff() throws Exception {
+    		arctic.turnBlizzardOff();
+    		assertEquals(false, arctic.getBlizzardMode());
+    }
+
+    
+    @Test
+    public void testCheatModeSetLocation() throws Exception {
+    		arctic.cheatmodeSetLocation(22);
+    		assertEquals(22, arctic.getSUV().getLocation());
+    		arctic.cheatmodeSetLocation(0);
+    		assertEquals(0, arctic.getSUV().getLocation());
+    }
+    
+    @Test
     public void setLocationToMiddle() throws Exception {
         sportsCar.setLocation(14);
         assertEquals(14, sportsCar.getLocation());

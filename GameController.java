@@ -49,24 +49,28 @@ public class GameController{
 	boolean validInput = false; // returns true if the person selected an integer between 0-6
         if (choice == c){
             do{
-	        System.out.println("~CHEAT MENU SELECTION~");
-	        System.out.println("(0) Toggle debugging messages on/off");
-	        System.out.println("(1) Change fuel of sports car");
-	        System.out.println("(2) Change fuel of SUV car");
-	        System.out.println("(3) Change location of sports car");
-	        System.out.println("(4) Change location of SUV car");
-	        System.out.println("(5) Make a blizzard in the arctic track");
-	        System.out.println("(6) Make a heatwave in the desert track");
-		System.out.println("Enter selection: ");
-	        int cheatSelection = in.nextInt();
-            if (processCheatMenu(cheatSelection) == true){
-                validInput = true;
-	    }
+	            	printCheatMenu();
+		        int cheatSelection = in.nextInt();
+	            if (processCheatMenu(cheatSelection) == true){
+	                validInput = true;
+	            }
             }
             while (validInput == false); // if the input is incorrect, reprompt the user for input
-	    cheatMenuSelected = true;
+        cheatMenuSelected = true;
         }
 	return(cheatMenuSelected); // will return true if the user entered the cheat menu
+    }
+    
+    public void printCheatMenu() {
+        System.out.println("~CHEAT MENU SELECTION~");
+        System.out.println("(0) Toggle debugging messages on/off");
+        System.out.println("(1) Change fuel of sports car");
+        System.out.println("(2) Change fuel of SUV car");
+        System.out.println("(3) Change location of sports car");
+        System.out.println("(4) Change location of SUV car");
+        System.out.println("(5) Make a blizzard in the arctic track");
+        System.out.println("(6) Make a heatwave in the desert track");
+    		System.out.println("Enter selection: ");
     }
     
     // Process the cheat menu based on the user selection based on cases
@@ -131,7 +135,7 @@ public class GameController{
 	boolean validInput = false;
 	do{
 	    if ((choice >= 0) && (choice <= 24)){ // ensure input is between 0 and 24 before changing location
-		validInput = true;
+	    	validInput = true;
 		arctic.cheatmodeSetLocation(choice); // change location to what user input
 	    }
 	    else{ // reprompt user while input is invalid
@@ -143,6 +147,7 @@ public class GameController{
 	while(validInput == false); // reprompt while input is invalid
     }
 
+    
     // Allows user to change SUV  fuel via cheat menu
     public void changeSUVFuel(int fuel){
 	int choice = fuel;

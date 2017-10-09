@@ -22,6 +22,28 @@ public class SpeedTest {
 	}
 	
 	@Test
+	public void testTrackLocation() {
+		arctic.getSUV().setLocation(0);
+		arctic.getSUV().trackLocation(arctic.getSUV(), 2);
+		assertEquals(2, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(10);
+		arctic.getSUV().trackLocation(arctic.getSUV(), 2);
+		assertEquals(12, arctic.getSUV().getLocation());
+	}
+	
+	@Test
+	public void testNoMoveOnTrackLocation() {
+		arctic.getSUV().setLocation(0);
+		arctic.getSUV().trackLocation(arctic.getSUV(), 0);
+		assertEquals(0, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(10);
+		arctic.getSUV().trackLocation(arctic.getSUV(), 0);
+		assertEquals(10, arctic.getSUV().getLocation());
+	}
+	
+	@Test
 	public void checkValidInputCheatMenu() throws Exception {
 		assertEquals(true, controller.processCheatMenu(0));
 		assertEquals(false, controller.processCheatMenu(-1));
@@ -30,12 +52,25 @@ public class SpeedTest {
 	
     @Test
     public void setLocationToBeginning() throws Exception {
-        sportsCar.setLocation(0);
-        assertEquals(0, sportsCar.getLocation());
-        suv.setLocation(0);
-        assertEquals(0, suv.getLocation());
+
     }
 
+    @Test
+    public void setLocationToMiddle() throws Exception {
+		arctic.getSUV().setLocation(10);
+        assertEquals(10, arctic.getSUV().getLocation());
+        desert.getSportsCar().setLocation(14);
+        assertEquals(14, desert.getSportsCar().getLocation());
+    }
+    
+    @Test
+    public void setLocationToEnd() throws Exception {
+		arctic.getSUV().setLocation(24);
+        assertEquals(24, arctic.getSUV().getLocation());
+        desert.getSportsCar().setLocation(24);
+        assertEquals(24, desert.getSportsCar().getLocation());
+    }
+   
     @Test
     public void testBlizzardModeOn() throws Exception {
     		arctic.setBlizzardMode();
@@ -57,21 +92,7 @@ public class SpeedTest {
     		assertEquals(0, arctic.getSUV().getLocation());
     }
     
-    @Test
-    public void setLocationToMiddle() throws Exception {
-        sportsCar.setLocation(14);
-        assertEquals(14, sportsCar.getLocation());
-        suv.setLocation(14);
-        assertEquals(14, suv.getLocation());
-    }
-    
-    @Test
-    public void setLocationToEnd() throws Exception {
-        sportsCar.setLocation(23);
-        assertEquals(23, sportsCar.getLocation());
-        suv.setLocation(23);
-        assertEquals(23, suv.getLocation());
-    }
+
 
     @Test
     public void checkIfNoWin() throws Exception{

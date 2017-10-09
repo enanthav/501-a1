@@ -22,20 +22,25 @@ public class Sports extends Car{
 
     // Adjusts fuel according to game state
     public int move(boolean heatwaveStatus){
-        if (heatwaveStatus == true){ // check to see if heatwave is on
-	        consumeFuel(HEATWAVE_FUEL_CONSUMPTION);
-            System.out.println("Current fuel: " + getFuel());
-	        System.out.println("Fuel use: " + HEATWAVE_FUEL_CONSUMPTION);
-        }
+    		if (heatwaveStatus) {
+    			consumeFuel(HEATWAVE_FUEL_CONSUMPTION);
+    		}
         else{ // else consume the fuel normally
             consumeFuel(CONSUMPTION_RATE);
-            System.out.println("Current fuel: " + getFuel());
-	        System.out.println("Fuel use: " + CONSUMPTION_RATE);
         }
+        printFuelConsumption(heatwaveStatus);
         makeSound();
-	    return(this.STANDARD_DISTANCE);
+	    return(STANDARD_DISTANCE);
     }
-
+    
+    public void printFuelConsumption(boolean heatwave) {
+        System.out.println("Current fuel: " + getFuel());
+		if (heatwave) {
+			System.out.println("Fuel use: " + HEATWAVE_FUEL_CONSUMPTION);
+		} else {
+	        System.out.println("Fuel use: " + CONSUMPTION_RATE);
+		}
+    }
     
     public void printLocation() {
     		System.out.println("<<< Sports.trackLocation >>>");
@@ -46,12 +51,12 @@ public class Sports extends Car{
     public void setLocation(int newDistance){
 	if ((newDistance >=0) && (newDistance <= Track.SIZE -1)){ // ensure new location is valid
 	    location = newDistance;
-	}
+		}
     }
     // Ensures valid input when user sets the fuel
     public void changeFuel(int newFuel){
-	System.out.println("sports.changeFuel");
-	setFuel(newFuel);
+		System.out.println("sports.changeFuel");
+		setFuel(newFuel);
     }
 
     // Returns current location of vehicle on array

@@ -52,8 +52,7 @@ public class SUV extends Car{
     public int move()
     {
 	   consumeFuel(this.CONSUMPTION_RATE);
-	   System.out.println("Current fuel: " + this.getFuel());
-	   System.out.println("Fuel use: " + this.CONSUMPTION_RATE);
+	   printFuelConsumption();
        makeSound();
 	   return(STANDARD_DISTANCE);
     }
@@ -61,11 +60,14 @@ public class SUV extends Car{
     // Consumes fuel when driving in AWD and returns distance moved in AWD
     public int moveAWD(){
 	   consumeFuel(this.CONSUMPTION_RATE);
-	   System.out.println("Current fuel: " + this.getFuel());
-	   System.out.println("Fuel use: " + this.CONSUMPTION_RATE);
+	   printFuelConsumption();
 	   return(AWD_DISTANCE);
     }
 
+    public void printFuelConsumption() {
+ 	   System.out.println("Current fuel: " + getFuel());
+ 	   System.out.println("Fuel use: " + CONSUMPTION_RATE);
+    }
     // Returns whether normal mode is on (true) or off (false)
     public boolean getNormalMode(){
 	    return(normalMode);
@@ -76,14 +78,14 @@ public class SUV extends Car{
     }
     // Allows user to change the fuel value through the cheat menu
     public void changeFuel(int newFuel){
-	setFuel(newFuel);
+    		setFuel(newFuel);
     }
 
     // Allows user to change location via cheat menu
     public void setLocation(int newLocation){
 	if (newLocation <= Track.SIZE-1){ // ensure the location is between 0 and 24 before changing it
 	    location = newLocation;
-	}
+		}
     }
 
     // Returns current location of vehicle on array

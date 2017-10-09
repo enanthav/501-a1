@@ -22,6 +22,18 @@ public class SpeedTest {
 	}
 	
 	@Test
+	public void testIfNormalDrivingModeOn() throws Exception {
+		assertEquals(true, arctic.getSUV().drivingMode(68));
+		assertEquals(true, arctic.getSUV().drivingMode(100));
+	}
+	
+	@Test
+	public void testIfNormalDrivingModeOff() throws Exception {
+		assertEquals(false, arctic.getSUV().drivingMode(65));
+		assertEquals(false, arctic.getSUV().drivingMode(96));
+	}
+
+	@Test
 	public void testTrackLocation() {
 		arctic.getSUV().setLocation(0);
 		arctic.getSUV().trackLocation(arctic.getSUV(), 2);

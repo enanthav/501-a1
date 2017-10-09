@@ -25,26 +25,13 @@ public class SUV extends Car{
         if (Debug.getOn() == true){
             System.out.println("<<< drivingMode() >>>");
         }
-        switch(choice) {
-            case 65: // check if choice made was equal to 'A' (AWD)
-                normalMode = false;
-                System.out.println("The SUV is in AWD mode");
-                break;
-
-            case 96:  // check if choice made was equal to 'a' (AWD)
-                normalMode = false;
-                System.out.println("The SUV is in AWD mode");
-                break;
-
-            case 68: // check if choice made was equal to 'D' (normal)
-                normalMode = true;
-                System.out.println("The SUV is driving in normal mode");
-                break;
-            case 100: // check if choice made was equal to 'd' (normal)
-                normalMode = true;
-                System.out.println("The SUV is driving in normal mode");
-            default:
-                System.out.println("Invalid input");
+     // check if choice made was equal to 'A' - 65  or 'a' - 96 (AWD) 
+        if (choice == 65  || choice == 96) {
+        		normalMode = false;
+        		System.out.println("The SUV is in AWD mode");
+        } else if (choice == 68 || choice == 100) {
+        		normalMode = true;
+        		System.out.println("The SUV is driving in normal mode");
         }
         return(normalMode);
     }

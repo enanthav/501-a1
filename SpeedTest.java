@@ -56,17 +56,17 @@ public class SpeedTest {
 	public void testMoveCarBlizzardOnAWDOn() throws Exception {
 		arctic.getSUV().setLocation(0);
 		arctic.setBlizzardMode();
-		arctic.moveCar(65); // normal mode
+		arctic.moveCar(65); // AWD mode
 		assertEquals(1, arctic.getSUV().getLocation());
 		
 		arctic.getSUV().setLocation(2);
 		arctic.setBlizzardMode();
-		arctic.moveCar(65); // normal mode
+		arctic.moveCar(65); // AWD mode
 		assertEquals(3, arctic.getSUV().getLocation());
 		
 		arctic.getSUV().setLocation(22);
 		arctic.setBlizzardMode();
-		arctic.moveCar(65); // normal mode
+		arctic.moveCar(65); // AWD mode
 		assertEquals(23, arctic.getSUV().getLocation());
 	}
 	
@@ -74,12 +74,12 @@ public class SpeedTest {
 	public void testMoveCarBlizzardOffAWDOn() throws Exception {
 		arctic.getSUV().setLocation(0);
 		arctic.turnBlizzardOff();
-		arctic.moveCar(65); // normal mode
+		arctic.moveCar(65); // AWD mode
 		assertEquals(1, arctic.getSUV().getLocation());
 		
 		arctic.getSUV().setLocation(14);
 		arctic.turnBlizzardOff();
-		arctic.moveCar(65); // normal mode
+		arctic.moveCar(65); // AWD mode
 		assertEquals(15, arctic.getSUV().getLocation());
 	}
 	
@@ -127,7 +127,10 @@ public class SpeedTest {
 	
     @Test
     public void setLocationToBeginning() throws Exception {
-
+		arctic.getSUV().setLocation(0);
+        assertEquals(0, arctic.getSUV().getLocation());
+        desert.getSportsCar().setLocation(0);
+        assertEquals(0, desert.getSportsCar().getLocation());
     }
 
     @Test

@@ -22,6 +22,69 @@ public class SpeedTest {
 	}
 	
 	@Test
+	public void testMoveCarBlizzardOnNormalOn() throws Exception {
+		arctic.getSUV().setLocation(0);
+		arctic.setBlizzardMode();
+		arctic.moveCar(68); // normal mode
+		assertEquals(0, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(2);
+		arctic.setBlizzardMode();
+		arctic.moveCar(68); // normal mode
+		assertEquals(2, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(24);
+		arctic.setBlizzardMode();
+		arctic.moveCar(68); // normal mode
+		assertEquals(24, arctic.getSUV().getLocation());
+	}
+	
+	@Test
+	public void testMoveCarBlizzardOffNormalOn() throws Exception {
+		arctic.getSUV().setLocation(0);
+		arctic.turnBlizzardOff();
+		arctic.moveCar(68); // normal mode
+		assertEquals(2, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(14);
+		arctic.turnBlizzardOff();
+		arctic.moveCar(68); // normal mode
+		assertEquals(16, arctic.getSUV().getLocation());
+	}
+	
+	@Test
+	public void testMoveCarBlizzardOnAWDOn() throws Exception {
+		arctic.getSUV().setLocation(0);
+		arctic.setBlizzardMode();
+		arctic.moveCar(65); // normal mode
+		assertEquals(1, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(2);
+		arctic.setBlizzardMode();
+		arctic.moveCar(65); // normal mode
+		assertEquals(3, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(22);
+		arctic.setBlizzardMode();
+		arctic.moveCar(65); // normal mode
+		assertEquals(23, arctic.getSUV().getLocation());
+	}
+	
+	@Test
+	public void testMoveCarBlizzardOffAWDOn() throws Exception {
+		arctic.getSUV().setLocation(0);
+		arctic.turnBlizzardOff();
+		arctic.moveCar(65); // normal mode
+		assertEquals(1, arctic.getSUV().getLocation());
+		
+		arctic.getSUV().setLocation(14);
+		arctic.turnBlizzardOff();
+		arctic.moveCar(65); // normal mode
+		assertEquals(15, arctic.getSUV().getLocation());
+	}
+	
+	
+	@Test
 	public void testIfNormalDrivingModeOn() throws Exception {
 		assertEquals(true, arctic.getSUV().drivingMode(68));
 		assertEquals(true, arctic.getSUV().drivingMode(100));

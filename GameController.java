@@ -105,7 +105,7 @@ public class GameController{
             valid = true;
             break;
 	    case 6: desert.turnHeatWaveOn(); // turn heatwave on
-            valid = true;
+            
             break;
         default: System.out.println("Invalid input! Please enter an integer between 0-6");
         }

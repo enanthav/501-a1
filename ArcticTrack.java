@@ -49,34 +49,51 @@ public class ArcticTrack extends Track{
         if (Debug.getOn() == true){
             System.out.println("<<< Arctic.moveCar() >>>");
         }
-        int A = 65; int a = 97; // ASCII values for 'A', 'a', 'D', 'd'
-        int D = 68; int d = 100;
-	    boolean validInput = false; // will return true if the user input is valid
-	    if ((selection == A) || (selection == a) || (selection == D) || (selection == d)){ // check that the user input is valid
+	    boolean isValid = false; // will return true if the user input is valid
+	    if (validateInput(selection)){ // check that the user input is valid
 	        anSUV.drivingMode(selection); // updates driving mode to AWD or normal depending on user choice
-	        validInput = true;
+	        isValid = true;
             }
-            if ((anSUV.getFuel() >= SUV.CONSUMPTION_RATE) && (validInput == true)){ // check to ensure there is enough fuel for a move
-	            if ((blizzardModeOn == false) && (anSUV.getNormalMode() == true)){ // if blizzard mode is off and normal mode is on
+	    
+            if (ensureFuelNotEmpty(isValid)){ // check to ensure there is enough fuel for a move
+	            if (blizzardOffAndNormalOn()){ // if blizzard mode is off and normal mode is on
                     int distance = anSUV.move(); // stores appropriate move distance of SUV in a temporary variable
                     updateGrid(distance); // updates grid accordingly using the appropriate move distance
                     System.out.println("Distance moved: " + distance + "\n");
 	            }
-	            else if ((blizzardModeOn == true) && (anSUV.getNormalMode() == true)){ // if blizzard mode is on and normal mode is on, the vehicle does not move     
+	            else if (blizzardOnAndNormalOn()){ // if blizzard mode is on and normal mode is on, the vehicle does not move     
 		            System.out.println("The SUV is unable to move. It is stuck in a blizzard!");
 		        }
-	            else if (anSUV.getNormalMode() == false){ // checks if normal mode is off
+	            else if (!anSUV.getNormalMode()){ // checks if normal mode is off
 		            int distance = anSUV.moveAWD(); // moves SUV using AWD distance
-		            updateGrid(distance); // updates grid with using appropriate distance travelled in AWD
+		            updateGrid(distance); // updates grid with using appropriate distance traveled in AWD
                     System.out.println("Distance moved: " + distance + "\n");
                 }
 	        }
-            else if(anSUV.getFuel() < SUV.CONSUMPTION_RATE){ // if there isn't enough fuel to move, display message to user
+            else if(!ensureFuelNotEmpty(isValid)){
 	            System.out.println("There is not enough fuel to move!");
             }
-        return(validInput); // will return true if the user input was valid
+        return(isValid); // will return true if the user input was valid
     }
-
+    
+    public boolean blizzardOnAndNormalOn() {
+    		return ((blizzardModeOn == true) && (anSUV.getNormalMode() == true));
+    }
+    
+    public boolean blizzardOffAndNormalOn() {
+    		return ((blizzardModeOn == false) && (anSUV.getNormalMode() == true));
+    }
+    
+    public boolean ensureFuelNotEmpty(boolean isValid) {
+    		return (anSUV.getFuel() >= SUV.CONSUMPTION_RATE) && (isValid == true);
+    }
+    
+    public boolean validateInput(int userInput) {
+    	 	// ASCII values for 'A', 'a', 'D', 'd'
+        int A = 65; int a = 97;
+        int D = 68; int d = 100;
+    		return ((userInput == A) || (userInput == a) || (userInput == D) || (userInput == d));
+    }
     // Update the grid with the new location of the car and wipe the old location
     public void updateGrid(int newDistance){
         int oldLocation = anSUV.getLocation();

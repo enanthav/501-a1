@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.io.Console;
 
 import org.junit.After;
 import org.junit.Before;

@@ -20,12 +20,6 @@ public class SUV extends Car{
         setFuel(STARTING_FUEL);
     }
     
-    public void makeSound(){
-        CPSound sound = new CPSound();
-        // Sound file http://soundbible.com/154-Car-Engine-Revving.html
-        sound.play("carsound.wav");
-    }
-
     // Process the driving mode selected by the user
     public boolean drivingMode(int choice){
         if (Debug.getOn() == true){
@@ -76,21 +70,10 @@ public class SUV extends Car{
     public boolean getNormalMode(){
 	    return(normalMode);
     }
-
-    // This will track the distance travelled and the current location of the car
-    public void trackLocation(int newDistance){
-	    if (location < Track.SIZE-1){ // subtract one from track size because we start counting from zero
-	        location = location + newDistance;
-	    }
-	    else{ // if the track location exceeds 24, set the location to 24
-	        location = Track.SIZE-1;
-            System.out.println("END OF THE TRACK HAS BEEN REACHED!");
-	    }
-        if (Debug.getOn() == true){
-            System.out.println("<<< Tracking SUV location >>> " + location);
-        }
+    
+    public void printLocation(){
+    		System.out.println("<<< Tracking SUV location >>> " + location);
     }
-
     // Allows user to change the fuel value through the cheat menu
     public void changeFuel(int newFuel){
 	setFuel(newFuel);

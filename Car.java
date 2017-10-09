@@ -8,7 +8,7 @@
 
  */
 
-public class Car
+public abstract class Car
 {
     public static final int STARTING_FUEL = 40;
     public static final int STANDARD_DISTANCE = 2;
@@ -23,6 +23,26 @@ public class Car
 	   fuel = STARTING_FUEL;
     }
 
+    public void makeSound(){
+        CPSound sound = new CPSound();
+        // Sound file http://soundbible.com/154-Car-Engine-Revving.html
+        sound.play("carsound.wav");
+    }
+    
+    // This will track the distance traveled and the current location of the car
+    public void trackLocation(Car car, int newDistance){
+	    if (car.getLocation() < Track.SIZE - 1){ // subtract 1 because we start counting from 0
+	    		car.setLocation(car.getLocation() + newDistance);
+	    }
+	    else{ // if the track location exceeds 24, set the location to 24
+	        car.setLocation(Track.SIZE - 1);
+	        System.out.println("END OF THE TRACK HAS BEEN REACHED!");
+	    }
+        if (Debug.getOn() == true){
+            printLocation();
+        }
+    }
+    
     // As the car moves, this class or child classes can specify          
     // for that type of car how much fuel to consume.
     protected void consumeFuel(int amount)
@@ -85,4 +105,9 @@ public class Car
 	   s = s + appearance;
 	   return(s);
     }
+    
+    public abstract void setLocation(int distance);
+    public abstract int getLocation();
+    public abstract void printLocation();
+    
 }

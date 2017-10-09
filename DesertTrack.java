@@ -73,7 +73,7 @@ public class DesertTrack extends Track{
     // Update the grid with the new location of the car and wipe the old location
     public void updateGrid(int newDistance){
         int oldLocation = sportsCar.getLocation();
-        sportsCar.trackLocation(newDistance); // track new location of the sports car
+        sportsCar.trackLocation(sportsCar, newDistance); // track new location of the sports car
         getTrack()[sportsCar.getLocation()] = sportsCar; // update array with sports car object
         getTrack()[oldLocation] = null; // wipe old location
 

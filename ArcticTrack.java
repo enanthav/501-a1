@@ -81,7 +81,7 @@ public class ArcticTrack extends Track{
     public void updateGrid(int newDistance){
         int oldLocation = anSUV.getLocation();
         if (((anSUV.getLocation() + anSUV.AWD_DISTANCE) <= SIZE - 1) || ((anSUV.getLocation() + Car.STANDARD_DISTANCE) <= SIZE - 1)){ // if the new location is less than or equal to the array size, update the grid
-            anSUV.trackLocation(newDistance); // update location attribute
+            anSUV.trackLocation(anSUV, newDistance); // update location attribute
             getTrack()[anSUV.getLocation()] = anSUV; // update array with new car location
             getTrack()[oldLocation] = null; // wipe old location
         }

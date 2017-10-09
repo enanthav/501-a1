@@ -14,12 +14,6 @@ public class Sports extends Car{
     public static final int STANDARD_DISTANCE = 3;
     public final int HEATWAVE_FUEL_CONSUMPTION = 4;
 
-    public void makeSound(){
-        CPSound sound = new CPSound();
-        // Sound file http://soundbible.com/154-Car-Engine-Revving.html
-        sound.play("carsound.wav");
-    }
-
     // This constructor will take on a character as the parameter and change the appearance of the vehicle.
     public Sports(char appearance){
 	    setAppearance(appearance);
@@ -42,19 +36,12 @@ public class Sports extends Car{
 	    return(this.STANDARD_DISTANCE);
     }
 
-    // This will track the distance travelled and the current location of the car
-    public void trackLocation(int newDistance){
-	    if (location < Track.SIZE - 1){ // subtract 1 because we start counting from 0
-	        location += newDistance;
-	    }
-	    else{ // if the track location exceeds 24, set the location to 24
-	        location = Track.SIZE - 1;
-	    }
-        if (Debug.getOn() == true){
-            System.out.println("<<< Sports.trackLocation >>>");
-            System.out.println("<<< New sports car location has been set to >>> " + location);
-        }
+    
+    public void printLocation() {
+    		System.out.println("<<< Sports.trackLocation >>>");
+        System.out.println("<<< New sports car location has been set to >>> " + location);
     }
+    
     // Allows user to change location via cheat menu
     public void setLocation(int newDistance){
 	if ((newDistance >=0) && (newDistance <= Track.SIZE -1)){ // ensure new location is valid

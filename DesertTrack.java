@@ -3,25 +3,25 @@
   Specific Features: This is a child of the parent class Track with an additional ability to generate a heatwave. A sports car travelling during a heat wave will overheat. The effect of overheating is consuming four fuel points versus 2. Each turn there's a 10% chance of a heatwave occurring, otherwise the temperature is normal.
 */
 public class DesertTrack extends Track{
-    private Sports sportsCar = new Sports('S');
+    private Sports sportsCar;
     private boolean heatwaveModeOn;
 
-    // set the location of the sports car to 0 on the array
     public DesertTrack(){
+    		sportsCar = new Sports('S');
         setLocation(sportsCar, 0);
     }
-    // Returns a reference to sports car
+
     public Sports getSportsCar(){
 	    return(sportsCar);
     }
-    // Turns heatwave on
-    public void setHeatwaveMode(){
+
+    public void turnHeatWaveOn(){
 	    if (Debug.getOn() == true){
 	        System.out.println("Heatwave mode is on");
 	    }
 	    heatwaveModeOn = true;
     }
-    // Turns heatwave off
+
     public void turnHeatwaveOff(){
 	    if (Debug.getOn() == true){
 	        System.out.println("Heatwave mode is off");
@@ -29,13 +29,11 @@ public class DesertTrack extends Track{
         heatwaveModeOn = false;
     }
 
-    // Return heatwaveModeOn, heatwaveModeOn is true when it is on
     public boolean getHeatwaveMode(){
-    	return(heatwaveModeOn);
+    		return(heatwaveModeOn);
     }
 
-    // Display driving options
-    public void drivingMenu(){
+    public void printDrivingMenu(){
 	    System.out.println("Sportscar Driving Options");
 	    System.out.println("-------------------------");
 	    System.out.println("(d)rive normally");
@@ -43,39 +41,37 @@ public class DesertTrack extends Track{
 	    System.out.println("Enter selection: ");
     }
 
-
-    // Move the car along the array
-    public boolean moveCar(int selection){
+    public boolean moveCarOnTrack(int userChoice){
         if (Debug.getOn() == true){
             System.out.println("<<< Desert.moveCar() >>>");
         }
-        int D = 68; int d = 100; // ASCII values for 'D' and 'd'
-	    boolean validInput = false; // will return true if the user input is valid
-	    if ((selection == D) || (selection == d)){ // check for valid input
-                validInput = true;
+        int asciiD = 68; int asciid = 100;
+	    boolean isValidInput = false;
+	    if ((userChoice == asciiD) || (userChoice == asciid)){
+                isValidInput = true;
                 if ((sportsCar.getFuel() >= Sports.CONSUMPTION_RATE) && (heatwaveModeOn == false)){ // check to ensure there is enough fuel for a move in normal weather
-                    sportsCar.move(heatwaveModeOn); // processes the move while heatwave is off
-                    updateGrid(Sports.STANDARD_DISTANCE); // updates grid with new location of car
+                    sportsCar.move(heatwaveModeOn);
+                    updateTrack(Sports.STANDARD_DISTANCE); 
                     System.out.println("Distance moved: " + Sports.STANDARD_DISTANCE + "\n");
                     }
                 else if ((sportsCar.getFuel() >= sportsCar.HEATWAVE_FUEL_CONSUMPTION) && (heatwaveModeOn == true)){ // check to ensure that there is greater than or equal to 4 fuel when heatwave is on
-                    sportsCar.move(heatwaveModeOn); // processes the move while heatwave is on
-                    updateGrid(Sports.STANDARD_DISTANCE); // updates grid with new location of car
+                    sportsCar.move(heatwaveModeOn); 
+                    updateTrack(Sports.STANDARD_DISTANCE);
                     System.out.println("Distance moved: " + Sports.STANDARD_DISTANCE + "\n");
                 }
-                else{ // display no fuel message to user
+                else{
                     System.out.println("There is not enough fuel to move!");
                 }
             }
-        return(validInput); // return true if the input was valid
+        return(isValidInput);
     }
 
-    // Update the grid with the new location of the car and wipe the old location
-    public void updateGrid(int newDistance){
+    
+    public void updateTrack(int newDistance){
         int oldLocation = sportsCar.getLocation();
         sportsCar.trackLocation(sportsCar, newDistance); // track new location of the sports car
         getTrack()[sportsCar.getLocation()] = sportsCar; // update array with sports car object
-        getTrack()[oldLocation] = null; // wipe old location
+        getTrack()[oldLocation] = null;
 
         if (Debug.getOn() == true){
             System.out.println("<<< sportsCar.updateGrid() >>>");
@@ -83,16 +79,16 @@ public class DesertTrack extends Track{
             System.out.println(sportsCar.getLocation() + " NEW LOCATION"); 
         }
     }
-    // Processes user input and calls appropriate functions to set new location for car
-    public void cheatmodeSetLocation(int selection){
+
+    public void cheatmodeSetLocation(int userChoice){
         if (Debug.getOn() == true){
             System.out.println("<<< desertTrack cheatmodeSetLocation >>>");
         }
-	if ((selection >= 0) && (selection <= 24)){ // ensure valid location between 0-24
-	    int oldLocation = sportsCar.getLocation(); // store temporary location
-	    sportsCar.setLocation(selection); // store the new location
-	    setLocation(sportsCar, selection); // set the new location on the array
-	    getTrack()[oldLocation]=null; // wipe the old location
-	}
+		if ((userChoice >= 0) && (userChoice <= SIZE-1)){
+		    int oldLocation = sportsCar.getLocation();
+		    sportsCar.setLocation(userChoice);
+		    setLocation(sportsCar, userChoice);
+		    getTrack()[oldLocation]=null;
+		}
     }
 }

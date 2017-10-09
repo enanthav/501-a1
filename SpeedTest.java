@@ -109,7 +109,7 @@ public class SpeedTest {
     @Test
     public void checkIfNoWin() throws Exception{
 		sportsCar.setLocation(10);
-		desert.updateGrid(10);
+		desert.updateTrack(10);
 		suv.setLocation(11);
 		arctic.updateGrid(11);
 		System.out.println(arctic.isWon());
@@ -119,7 +119,7 @@ public class SpeedTest {
     @Test
     public void checkIfSportsCarWins() throws Exception {
     		sportsCar.setLocation(24);
-    		desert.updateGrid(24);
+    		desert.updateTrack(24);
     		assertEquals(true, desert.isWon());
     }
    

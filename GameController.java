@@ -104,7 +104,7 @@ public class GameController{
         case 5: arctic.setBlizzardMode(); // turn blizzard on
             valid = true;
             break;
-	    case 6: desert.setHeatwaveMode(); // turn heatwave on
+	    case 6: desert.turnHeatWaveOn(); // turn heatwave on
             valid = true;
             break;
         default: System.out.println("Invalid input! Please enter an integer between 0-6");
@@ -208,7 +208,7 @@ public class GameController{
     // If the generated number is less than or equal 10, then turn the heatwave on
     public void chanceHeatwave(){
         if (generateWeatherProbability() == true){ // check to see if random number is less than or equal to 10
-	        desert.setHeatwaveMode();
+	        desert.turnHeatWaveOn();
 	        System.out.println("A heatwave has struck the desert track!");
         }
         else{ // if number > 10, turn heatwave off
@@ -266,14 +266,14 @@ public class GameController{
         boolean repromptNeeded = false;
          do{
             in.nextLine();
-            desert.drivingMenu(); // display desert menu
+            desert.printDrivingMenu();
             tempChoice = in.nextLine(); // store input as a String
             finalChoice = (int) tempChoice.charAt(0); // take first character as value
             if (finalChoice == quit){ // end game if user chose to quit
                 userQuit = true;
                 break;
             }
-            if ((cheatMenu(finalChoice) == false) && (desert.moveCar(finalChoice) == false)){ // checks to see if cheat menu was entered and if the sports car was moved, if none oare true, reprompt for input
+            if ((cheatMenu(finalChoice) == false) && (desert.moveCarOnTrack(finalChoice) == false)){ // checks to see if cheat menu was entered and if the sports car was moved, if none oare true, reprompt for input
                 repromptNeeded = true;
                 System.out.println("Invalid input! Please try again!");
                 }

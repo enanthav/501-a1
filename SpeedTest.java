@@ -51,7 +51,7 @@ public class SpeedTest {
 		arctic.moveCar(68); // normal mode
 		assertEquals(16, arctic.getSUV().getLocation());
 	}
-	
+
 	@Test
 	public void testMoveCarBlizzardOnAWDOn() throws Exception {
 		arctic.getSUV().setLocation(0);

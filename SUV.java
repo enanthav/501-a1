@@ -8,7 +8,6 @@ import java.io.*;
 import javax.sound.sampled.*;
 
 public class SUV extends Car{
-    private int location = 0; // SUV starts off at index 0 on array
     private boolean normalMode = true; // Default set to normal mode on when starting game
     // Shadow constants in car since the values for starting fuel and consumption rate differ
     public static final int STARTING_FUEL = 50;
@@ -18,6 +17,7 @@ public class SUV extends Car{
     public SUV(char appearance){
 	    setAppearance(appearance);
         setFuel(STARTING_FUEL);
+        location = 0;
     }
     
     // Process the driving mode selected by the user

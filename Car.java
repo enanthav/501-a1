@@ -13,7 +13,7 @@ public abstract class Car
     public static final int STARTING_FUEL = 40;
     public static final int STANDARD_DISTANCE = 2;
     public static final int CONSUMPTION_RATE = 2;
-
+    protected int location;
     private char appearance;
     private int fuel;
 

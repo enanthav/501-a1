@@ -8,7 +8,6 @@ import java.io.*;
 import javax.sound.sampled.*;
 
 public class Sports extends Car{
-    private int location;
     // SHADOWING CAR CLASS' CONSTANTS
     public static final int STARTING_FUEL = 30;
     public static final int STANDARD_DISTANCE = 3;
@@ -18,6 +17,7 @@ public class Sports extends Car{
     public Sports(char appearance){
 	    setAppearance(appearance);
 	    setFuel(STARTING_FUEL);
+	    location = 0;
     }
 
     // Adjusts fuel according to game state
